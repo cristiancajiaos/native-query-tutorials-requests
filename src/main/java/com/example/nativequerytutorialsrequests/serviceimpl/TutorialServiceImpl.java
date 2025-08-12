@@ -29,6 +29,12 @@ public class TutorialServiceImpl implements TutorialService {
         Collectors.toList());
   }
 
+  @Override
+  public List<TutorialDTO> getAllTutorialesByPublishedAlt(Boolean isPublished) {
+    return tutorialRepository.getAllTutorialsByPublishedAlt(isPublished).stream().map(this::convertToDTO).collect(
+        Collectors.toList());
+  }
+
   private Tutorial convertToEntity(TutorialDTO tutorialDTO) {
     return new Tutorial(tutorialDTO.id(), tutorialDTO.title(), tutorialDTO.description(), tutorialDTO.level(), tutorialDTO.published(), tutorialDTO.createdAt());
   }

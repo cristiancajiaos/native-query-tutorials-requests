@@ -33,4 +33,10 @@ public class TutorialController {
     List<TutorialDTO> tutorials = tutorialService.getAllTutorialsByPublished(published);
     return ResponseEntity.ok(tutorials);
   }
+
+  @GetMapping("/published-alt/{isPublished}")
+  public ResponseEntity<List<TutorialDTO>> getAllTutorialsByPublishedAlt(@PathVariable Boolean isPublished) {
+    List<TutorialDTO> tutorials = tutorialService.getAllTutorialesByPublishedAlt(isPublished);
+    return ResponseEntity.ok(tutorials);
+  }
 }

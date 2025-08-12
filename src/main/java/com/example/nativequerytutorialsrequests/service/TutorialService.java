@@ -9,4 +9,6 @@ public interface TutorialService {
 
   List<TutorialDTO> getAllTutorialsByPublished(Boolean published);
 
+  List<TutorialDTO> getAllTutorialesByPublishedAlt(Boolean isPublished);
+
 }
