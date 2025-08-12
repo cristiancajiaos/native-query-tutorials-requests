@@ -24,7 +24,10 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
   List<Tutorial> getTutorialsCaseInsensitiveByTitleLike(@Param("title") String title);
 
   @Query(value = "select * FROM tutorials t WHERE t.level > :level", nativeQuery = true)
-  List<Tutorial> getTutorialesByLevelGreaterThan(@Param("level") int level);
+  List<Tutorial> getTutorialsByLevelGreaterThan(@Param("level") int level);
+
+  @Query(value = "select * FROM tutorials t WHERE t.level <= :level", nativeQuery = true)
+  List<Tutorial> getTutorialsByLevelLowerOrEqualThan(@Param("level") int level);
 
   @Query(value = "select * FROM tutorials t WHERE t.published = :isPublished AND t.title LIKE CONCAT('%', :title, '%')", nativeQuery = true)
   List<Tutorial> getTutorialsByPublishedAndTitle(@Param("isPublished") Boolean isPublished, @Param("title") String title);

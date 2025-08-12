@@ -16,7 +16,9 @@ public interface TutorialService {
 
   List<TutorialDTO> getTutorialesCaseInsensitiveBeTitleLike(String title);
 
-  List<TutorialDTO> getTutorialesByLevelGreaterThan(int level);
+  List<TutorialDTO> getTutorialsByLevelGreaterThan(int level);
+
+  List<TutorialDTO> getTutorialsByLevelLowerOrEqualThan(int level);
 
   List<TutorialDTO> getTutorialesByPublishedAndTitle(Boolean isPublished, String title);
 

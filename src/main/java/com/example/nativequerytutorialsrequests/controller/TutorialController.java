@@ -55,7 +55,13 @@ public class TutorialController {
 
   @GetMapping("/level/greater-than/{level}")
   public ResponseEntity<List<TutorialDTO>> getTutorialsByLevelGreaterThan(@PathVariable int level) {
-    List<TutorialDTO> tutorials = tutorialService.getTutorialesByLevelGreaterThan(level);
+    List<TutorialDTO> tutorials = tutorialService.getTutorialsByLevelGreaterThan(level);
+    return ResponseEntity.ok(tutorials);
+  }
+
+  @GetMapping("/level/lower-equal-than/{level}")
+  public ResponseEntity<List<TutorialDTO>> getTutorialsByLevelLowerOrEqualThan(@PathVariable int level) {
+    List<TutorialDTO> tutorials = tutorialService.getTutorialsByLevelLowerOrEqualThan(level);
     return ResponseEntity.ok(tutorials);
   }
 

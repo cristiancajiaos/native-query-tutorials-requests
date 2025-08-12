@@ -48,8 +48,14 @@ public class TutorialServiceImpl implements TutorialService {
   }
 
   @Override
-  public List<TutorialDTO> getTutorialesByLevelGreaterThan(int level) {
-    return tutorialRepository.getTutorialesByLevelGreaterThan(level).stream().map(this::convertToDTO).collect(
+  public List<TutorialDTO> getTutorialsByLevelGreaterThan(int level) {
+    return tutorialRepository.getTutorialsByLevelGreaterThan(level).stream().map(this::convertToDTO).collect(
+        Collectors.toList());
+  }
+
+  @Override
+  public List<TutorialDTO> getTutorialsByLevelLowerOrEqualThan(int level) {
+    return tutorialRepository.getTutorialsByLevelLowerOrEqualThan(level).stream().map(this::convertToDTO).collect(
         Collectors.toList());
   }
 
