@@ -43,7 +43,13 @@ public class TutorialController {
 
   @GetMapping("/title/{title}")
   public ResponseEntity<List<TutorialDTO>> getTutorialsByTitleLike(@PathVariable String title) {
-    List<TutorialDTO> tutorials = tutorialService.getTutorialesByTitleLike(title);
+    List<TutorialDTO> tutorials = tutorialService.getTutorialsByTitleLike(title);
+    return ResponseEntity.ok(tutorials);
+  }
+
+  @GetMapping("/title-ci/{title}")
+  public ResponseEntity<List<TutorialDTO>> getTutorialesCaseInsensitiveByTitleLike(@PathVariable("title") String tutorialTitle) {
+    List<TutorialDTO> tutorials = tutorialService.getTutorialesCaseInsensitiveBeTitleLike(tutorialTitle);
     return ResponseEntity.ok(tutorials);
   }
 

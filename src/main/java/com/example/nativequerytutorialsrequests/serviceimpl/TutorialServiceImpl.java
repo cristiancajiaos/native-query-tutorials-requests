@@ -36,8 +36,14 @@ public class TutorialServiceImpl implements TutorialService {
   }
 
   @Override
-  public List<TutorialDTO> getTutorialesByTitleLike(String title) {
+  public List<TutorialDTO> getTutorialsByTitleLike(String title) {
     return tutorialRepository.getTutorialsByTitleLike(title).stream().map(this::convertToDTO).collect(
+        Collectors.toList());
+  }
+
+  @Override
+  public List<TutorialDTO> getTutorialesCaseInsensitiveBeTitleLike(String title) {
+    return tutorialRepository.getTutorialsCaseInsensitiveByTitleLike(title).stream().map(this::convertToDTO).collect(
         Collectors.toList());
   }
 

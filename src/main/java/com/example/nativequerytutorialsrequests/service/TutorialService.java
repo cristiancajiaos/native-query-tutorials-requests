@@ -12,7 +12,9 @@ public interface TutorialService {
 
   List<TutorialDTO> getTutorialsByPublishedAlt(Boolean isPublished);
 
-  List<TutorialDTO> getTutorialesByTitleLike(String title);
+  List<TutorialDTO> getTutorialsByTitleLike(String title);
+
+  List<TutorialDTO> getTutorialesCaseInsensitiveBeTitleLike(String title);
 
   List<TutorialDTO> getTutorialesByPublishedAndTitle(Boolean isPublished, String title);
 
