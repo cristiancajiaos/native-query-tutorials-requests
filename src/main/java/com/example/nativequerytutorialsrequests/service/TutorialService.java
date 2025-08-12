@@ -2,6 +2,7 @@ package com.example.nativequerytutorialsrequests.service;
 
 import com.example.nativequerytutorialsrequests.record.TutorialDTO;
 import java.util.List;
+import org.springframework.data.repository.query.Param;
 
 public interface TutorialService {
 
@@ -12,5 +13,7 @@ public interface TutorialService {
   List<TutorialDTO> getTutorialsByPublishedAlt(Boolean isPublished);
 
   List<TutorialDTO> getTutorialesByTitleLike(String title);
+
+  List<TutorialDTO> getTutorialesByPublishedAndTitle(Boolean isPublished, String title);
 
 }

@@ -46,4 +46,11 @@ public class TutorialController {
     List<TutorialDTO> tutorials = tutorialService.getTutorialesByTitleLike(title);
     return ResponseEntity.ok(tutorials);
   }
+
+  @GetMapping("/mixed/{isPublished}/{title}")
+  public ResponseEntity<List<TutorialDTO>> getTutorialsByPublishedAndTitle(
+      @PathVariable("isPublished") Boolean isPublished, @PathVariable String title) {
+    List<TutorialDTO> tutorials = tutorialService.getTutorialesByPublishedAndTitle(isPublished, title);
+    return ResponseEntity.ok(tutorials);
+  }
 }
