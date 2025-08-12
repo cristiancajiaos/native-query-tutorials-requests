@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,12 @@ public class TutorialController {
   @GetMapping
   public ResponseEntity<List<TutorialDTO>> getAllTutorials() {
     List<TutorialDTO> tutorials = tutorialService.getAllTutorials();
+    return ResponseEntity.ok(tutorials);
+  }
+
+  @GetMapping("/published/{published}")
+  public ResponseEntity<List<TutorialDTO>> getAllTutorialsByPublished(@PathVariable Boolean published) {
+    List<TutorialDTO> tutorials = tutorialService.getAllTutorialsByPublished(published);
     return ResponseEntity.ok(tutorials);
   }
 }

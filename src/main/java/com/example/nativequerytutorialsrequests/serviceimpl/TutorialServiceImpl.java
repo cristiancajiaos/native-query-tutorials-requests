@@ -18,16 +18,22 @@ public class TutorialServiceImpl implements TutorialService {
     this.tutorialRepository = tutorialRepository;
   }
 
+  @Override
+  public List<TutorialDTO> getAllTutorials() {
+    return tutorialRepository.getAllTutorials().stream().map(this::convertToDTO).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<TutorialDTO> getAllTutorialsByPublished(Boolean published) {
+    return tutorialRepository.getAllTutorialsByPublished(published).stream().map(this::convertToDTO).collect(
+        Collectors.toList());
+  }
+
   private Tutorial convertToEntity(TutorialDTO tutorialDTO) {
     return new Tutorial(tutorialDTO.id(), tutorialDTO.title(), tutorialDTO.description(), tutorialDTO.level(), tutorialDTO.published(), tutorialDTO.createdAt());
   }
 
   private TutorialDTO convertToDTO(Tutorial tutorial) {
     return new TutorialDTO(tutorial.getId(), tutorial.getTitle(), tutorial.getDescription(), tutorial.getLevel(), tutorial.isPublished(), tutorial.getCreatedAt());
-  }
-
-  @Override
-  public List<TutorialDTO> getAllTutorials() {
-    return tutorialRepository.getAllTutorials().stream().map(this::convertToDTO).collect(Collectors.toList());
   }
 }

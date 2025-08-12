@@ -10,4 +10,7 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
   @Query(value = "SELECT * FROM tutorials t", nativeQuery = true)
   List<Tutorial> getAllTutorials();
 
+  @Query(value = "SELECT * FROM tutorials t WHERE t.published = ?1", nativeQuery = true)
+  List<Tutorial> getAllTutorialsByPublished(Boolean published);
+
 }

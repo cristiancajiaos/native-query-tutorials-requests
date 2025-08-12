@@ -7,4 +7,6 @@ public interface TutorialService {
 
   List<TutorialDTO> getAllTutorials();
 
+  List<TutorialDTO> getAllTutorialsByPublished(Boolean published);
+
 }
