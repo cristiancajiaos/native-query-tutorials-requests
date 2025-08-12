@@ -48,6 +48,12 @@ public class TutorialServiceImpl implements TutorialService {
   }
 
   @Override
+  public List<TutorialDTO> getTutorialesByLevelGreaterThan(int level) {
+    return tutorialRepository.getTutorialesByLevelGreaterThan(level).stream().map(this::convertToDTO).collect(
+        Collectors.toList());
+  }
+
+  @Override
   public List<TutorialDTO> getTutorialesByPublishedAndTitle(Boolean isPublished, String title) {
     return tutorialRepository.getTutorialsByPublishedAndTitle(isPublished, title).stream().map(this::convertToDTO).collect(
         Collectors.toList());

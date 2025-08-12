@@ -48,8 +48,14 @@ public class TutorialController {
   }
 
   @GetMapping("/title-ci/{title}")
-  public ResponseEntity<List<TutorialDTO>> getTutorialesCaseInsensitiveByTitleLike(@PathVariable("title") String tutorialTitle) {
+  public ResponseEntity<List<TutorialDTO>> getTutorialsCaseInsensitiveByTitleLike(@PathVariable("title") String tutorialTitle) {
     List<TutorialDTO> tutorials = tutorialService.getTutorialesCaseInsensitiveBeTitleLike(tutorialTitle);
+    return ResponseEntity.ok(tutorials);
+  }
+
+  @GetMapping("/level/greater-than/{level}")
+  public ResponseEntity<List<TutorialDTO>> getTutorialsByLevelGreaterThan(@PathVariable int level) {
+    List<TutorialDTO> tutorials = tutorialService.getTutorialesByLevelGreaterThan(level);
     return ResponseEntity.ok(tutorials);
   }
 
