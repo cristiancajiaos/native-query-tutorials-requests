@@ -24,14 +24,20 @@ public class TutorialServiceImpl implements TutorialService {
   }
 
   @Override
-  public List<TutorialDTO> getAllTutorialsByPublished(Boolean published) {
-    return tutorialRepository.getAllTutorialsByPublished(published).stream().map(this::convertToDTO).collect(
+  public List<TutorialDTO> getTutorialsByPublished(Boolean published) {
+    return tutorialRepository.getTutorialsByPublished(published).stream().map(this::convertToDTO).collect(
         Collectors.toList());
   }
 
   @Override
-  public List<TutorialDTO> getAllTutorialesByPublishedAlt(Boolean isPublished) {
-    return tutorialRepository.getAllTutorialsByPublishedAlt(isPublished).stream().map(this::convertToDTO).collect(
+  public List<TutorialDTO> getTutorialsByPublishedAlt(Boolean isPublished) {
+    return tutorialRepository.getTutorialsByPublishedAlt(isPublished).stream().map(this::convertToDTO).collect(
+        Collectors.toList());
+  }
+
+  @Override
+  public List<TutorialDTO> getTutorialesByTitleLike(String title) {
+    return tutorialRepository.getTutorialsByTitleLike(title).stream().map(this::convertToDTO).collect(
         Collectors.toList());
   }
 

@@ -1,5 +1,6 @@
 package com.example.nativequerytutorialsrequests.controller;
 
+import com.example.nativequerytutorialsrequests.entity.Tutorial;
 import com.example.nativequerytutorialsrequests.record.TutorialDTO;
 import com.example.nativequerytutorialsrequests.service.TutorialService;
 import java.util.List;
@@ -29,14 +30,20 @@ public class TutorialController {
   }
 
   @GetMapping("/published/{published}")
-  public ResponseEntity<List<TutorialDTO>> getAllTutorialsByPublished(@PathVariable Boolean published) {
-    List<TutorialDTO> tutorials = tutorialService.getAllTutorialsByPublished(published);
+  public ResponseEntity<List<TutorialDTO>> getTutorialsByPublished(@PathVariable Boolean published) {
+    List<TutorialDTO> tutorials = tutorialService.getTutorialsByPublished(published);
     return ResponseEntity.ok(tutorials);
   }
 
   @GetMapping("/published-alt/{isPublished}")
-  public ResponseEntity<List<TutorialDTO>> getAllTutorialsByPublishedAlt(@PathVariable Boolean isPublished) {
-    List<TutorialDTO> tutorials = tutorialService.getAllTutorialesByPublishedAlt(isPublished);
+  public ResponseEntity<List<TutorialDTO>> getTutorialsByPublishedAlt(@PathVariable Boolean isPublished) {
+    List<TutorialDTO> tutorials = tutorialService.getTutorialsByPublishedAlt(isPublished);
+    return ResponseEntity.ok(tutorials);
+  }
+
+  @GetMapping("/title/{title}")
+  public ResponseEntity<List<TutorialDTO>> getTutorialsByTitleLike(@PathVariable String title) {
+    List<TutorialDTO> tutorials = tutorialService.getTutorialesByTitleLike(title);
     return ResponseEntity.ok(tutorials);
   }
 }

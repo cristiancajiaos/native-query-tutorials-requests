@@ -7,8 +7,10 @@ public interface TutorialService {
 
   List<TutorialDTO> getAllTutorials();
 
-  List<TutorialDTO> getAllTutorialsByPublished(Boolean published);
+  List<TutorialDTO> getTutorialsByPublished(Boolean published);
 
-  List<TutorialDTO> getAllTutorialesByPublishedAlt(Boolean isPublished);
+  List<TutorialDTO> getTutorialsByPublishedAlt(Boolean isPublished);
+
+  List<TutorialDTO> getTutorialesByTitleLike(String title);
 
 }
