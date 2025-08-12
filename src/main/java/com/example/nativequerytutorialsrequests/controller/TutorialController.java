@@ -3,6 +3,9 @@ package com.example.nativequerytutorialsrequests.controller;
 import com.example.nativequerytutorialsrequests.entity.Tutorial;
 import com.example.nativequerytutorialsrequests.record.TutorialDTO;
 import com.example.nativequerytutorialsrequests.service.TutorialService;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -63,6 +66,14 @@ public class TutorialController {
   public ResponseEntity<List<TutorialDTO>> getTutorialsByLevelLowerOrEqualThan(@PathVariable int level) {
     List<TutorialDTO> tutorials = tutorialService.getTutorialsByLevelLowerOrEqualThan(level);
     return ResponseEntity.ok(tutorials);
+  }
+
+  @GetMapping("/date/greater-equal-than/{date}")
+  public ResponseEntity<List<TutorialDTO>> getTutorialesByDateGreaterEqualThan(@PathVariable("date") String dateStr) {
+    Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr, new ParsePosition(0));
+    System.out.println(date);
+    List<TutorialDTO> tutoriales = tutorialService.getTutorialesByDateGreaterEqualThan(date);
+    return ResponseEntity.ok(tutoriales);
   }
 
   @GetMapping("/mixed/{isPublished}/{title}")

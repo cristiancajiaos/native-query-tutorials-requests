@@ -1,6 +1,7 @@
 package com.example.nativequerytutorialsrequests.service;
 
 import com.example.nativequerytutorialsrequests.record.TutorialDTO;
+import java.util.Date;
 import java.util.List;
 import org.springframework.data.repository.query.Param;
 
@@ -19,6 +20,8 @@ public interface TutorialService {
   List<TutorialDTO> getTutorialsByLevelGreaterThan(int level);
 
   List<TutorialDTO> getTutorialsByLevelLowerOrEqualThan(int level);
+
+  List<TutorialDTO> getTutorialesByDateGreaterEqualThan(Date date);
 
   List<TutorialDTO> getTutorialesByPublishedAndTitle(Boolean isPublished, String title);
 

@@ -1,6 +1,7 @@
 package com.example.nativequerytutorialsrequests.repository;
 
 import com.example.nativequerytutorialsrequests.entity.Tutorial;
+import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -28,6 +29,9 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
 
   @Query(value = "select * FROM tutorials t WHERE t.level <= :level", nativeQuery = true)
   List<Tutorial> getTutorialsByLevelLowerOrEqualThan(@Param("level") int level);
+
+  @Query(value = "select * FROM tutorials t WHERE t.created_at >= :date", nativeQuery = true)
+  List<Tutorial> getTutorialsByDateGreaterEqualThan(@Param("date") Date date);
 
   @Query(value = "select * FROM tutorials t WHERE t.published = :isPublished AND t.title LIKE CONCAT('%', :title, '%')", nativeQuery = true)
   List<Tutorial> getTutorialsByPublishedAndTitle(@Param("isPublished") Boolean isPublished, @Param("title") String title);

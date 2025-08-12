@@ -4,6 +4,7 @@ import com.example.nativequerytutorialsrequests.entity.Tutorial;
 import com.example.nativequerytutorialsrequests.record.TutorialDTO;
 import com.example.nativequerytutorialsrequests.repository.TutorialRepository;
 import com.example.nativequerytutorialsrequests.service.TutorialService;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,13 @@ public class TutorialServiceImpl implements TutorialService {
   @Override
   public List<TutorialDTO> getTutorialsByLevelLowerOrEqualThan(int level) {
     return tutorialRepository.getTutorialsByLevelLowerOrEqualThan(level).stream().map(this::convertToDTO).collect(
+        Collectors.toList());
+  }
+
+  @Override
+  public List<TutorialDTO> getTutorialesByDateGreaterEqualThan(Date date) {
+    System.out.println(date);
+    return tutorialRepository.getTutorialsByDateGreaterEqualThan(date).stream().map(this::convertToDTO).collect(
         Collectors.toList());
   }
 
