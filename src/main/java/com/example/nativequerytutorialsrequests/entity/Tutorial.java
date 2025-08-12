@@ -31,13 +31,22 @@ public class Tutorial {
   public Tutorial() {
   }
 
-  public Tutorial(String title, String description, int level, boolean published,
+  public Tutorial(Long id, String title, String description, int level, boolean published,
       Date createdAt) {
+    this.id = id;
     this.title = title;
     this.description = description;
     this.level = level;
     this.published = published;
     this.createdAt = createdAt;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getTitle() {
