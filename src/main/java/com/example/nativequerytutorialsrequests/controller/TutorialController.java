@@ -68,11 +68,10 @@ public class TutorialController {
     return ResponseEntity.ok(tutorials);
   }
 
-  @GetMapping("/date/greater-equal-than/{date}")
+  @GetMapping("/created-at/greater-equal-than/{date}")
   public ResponseEntity<List<TutorialDTO>> getTutorialesByDateGreaterEqualThan(@PathVariable("date") String dateStr) {
     Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr, new ParsePosition(0));
-    System.out.println(date);
-    List<TutorialDTO> tutoriales = tutorialService.getTutorialesByDateGreaterEqualThan(date);
+    List<TutorialDTO> tutoriales = tutorialService.getTutorialesCreatedByDateGreaterEqualThan(date);
     return ResponseEntity.ok(tutoriales);
   }
 

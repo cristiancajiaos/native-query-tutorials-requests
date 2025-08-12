@@ -61,8 +61,7 @@ public class TutorialServiceImpl implements TutorialService {
   }
 
   @Override
-  public List<TutorialDTO> getTutorialesByDateGreaterEqualThan(Date date) {
-    System.out.println(date);
+  public List<TutorialDTO> getTutorialesCreatedByDateGreaterEqualThan(Date date) {
     return tutorialRepository.getTutorialsByDateGreaterEqualThan(date).stream().map(this::convertToDTO).collect(
         Collectors.toList());
   }
