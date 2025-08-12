@@ -1,0 +1,10 @@
+package com.example.nativequerytutorialsrequests.service;
+
+import com.example.nativequerytutorialsrequests.record.TutorialDTO;
+import java.util.List;
+
+public interface TutorialService {
+
+  List<TutorialDTO> getAllTutorials();
+
+}
