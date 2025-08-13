@@ -4,6 +4,7 @@ import com.example.nativequerytutorialsrequests.record.TutorialDTO;
 import com.example.nativequerytutorialsrequests.service.TutorialService;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
@@ -71,6 +72,24 @@ public class TutorialController {
   public ResponseEntity<List<TutorialDTO>> getTutorialsByLevelBetween(@PathVariable int start, @PathVariable int end) {
     List<TutorialDTO> tutorials = tutorialService.getTutorialsByLevelBetween(start, end);
     return ResponseEntity.ok(tutorials);
+  }
+
+  @GetMapping("/level/order/{order}")
+  public ResponseEntity<List<TutorialDTO>> getTutorialsByLevelOrder(@PathVariable String order) {
+    List<TutorialDTO> tutorials = new ArrayList<TutorialDTO>();
+    try {
+      if (order.equals("asc")) {
+        tutorials = tutorialService.getTutorialsByLevelOrderAsc();
+      } else if (order.equals("desc")) {
+        tutorials = tutorialService.getTutorialsByLevelOrderDesc();
+      } else {
+        throw new Error("Invalid order parameter");
+      }
+      return ResponseEntity.ok(tutorials);
+    } catch(Exception e) {
+      System.err.println("Error: " + e);
+      return ResponseEntity.badRequest().build();
+    }
   }
 
   @GetMapping("/created-at/greater-equal-than/{date}")

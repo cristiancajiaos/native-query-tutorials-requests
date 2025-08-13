@@ -67,6 +67,18 @@ public class TutorialServiceImpl implements TutorialService {
   }
 
   @Override
+  public List<TutorialDTO> getTutorialsByLevelOrderAsc() {
+    return tutorialRepository.getTutorialsByLevelOrderAsc().stream().map(this::convertToDTO).collect(
+        Collectors.toList());
+  }
+
+  @Override
+  public List<TutorialDTO> getTutorialsByLevelOrderDesc() {
+    return tutorialRepository.getTutorialsByLevelOrderDesc().stream().map(this::convertToDTO).collect(
+        Collectors.toList());
+  }
+
+  @Override
   public List<TutorialDTO> getTutorialsCreatedByDateGreaterEqualThan(Date date) {
     return tutorialRepository.getTutorialsCreatedByDateGreaterEqualThan(date).stream().map(this::convertToDTO).collect(
         Collectors.toList());

@@ -23,6 +23,10 @@ public interface TutorialService {
 
   List<TutorialDTO> getTutorialsByLevelBetween(int start, int end);
 
+  List<TutorialDTO> getTutorialsByLevelOrderAsc();
+
+  List<TutorialDTO> getTutorialsByLevelOrderDesc();
+
   List<TutorialDTO> getTutorialsCreatedByDateGreaterEqualThan(Date date);
 
   List<TutorialDTO> getTutorialsCreatedByDateBetween(Date start, Date end);
