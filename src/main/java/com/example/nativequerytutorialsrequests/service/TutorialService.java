@@ -23,7 +23,9 @@ public interface TutorialService {
 
   List<TutorialDTO> getTutorialsByLevelBetween(int start, int end);
 
-  List<TutorialDTO> getTutorialesCreatedByDateGreaterEqualThan(Date date);
+  List<TutorialDTO> getTutorialsCreatedByDateGreaterEqualThan(Date date);
+
+  List<TutorialDTO> getTutorialsCreatedByDateBetween(Date start, Date end);
 
   List<TutorialDTO> getTutorialesByPublishedAndTitle(Boolean isPublished, String title);
 
