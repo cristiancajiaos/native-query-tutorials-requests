@@ -1,6 +1,5 @@
 package com.example.nativequerytutorialsrequests.controller;
 
-import com.example.nativequerytutorialsrequests.entity.Tutorial;
 import com.example.nativequerytutorialsrequests.record.TutorialDTO;
 import com.example.nativequerytutorialsrequests.service.TutorialService;
 import java.text.ParsePosition;
@@ -52,7 +51,7 @@ public class TutorialController {
 
   @GetMapping("/title-ci/{title}")
   public ResponseEntity<List<TutorialDTO>> getTutorialsCaseInsensitiveByTitleLike(@PathVariable("title") String tutorialTitle) {
-    List<TutorialDTO> tutorials = tutorialService.getTutorialesCaseInsensitiveBeTitleLike(tutorialTitle);
+    List<TutorialDTO> tutorials = tutorialService.getTutorialesCaseInsensitiveByTitleLike(tutorialTitle);
     return ResponseEntity.ok(tutorials);
   }
 

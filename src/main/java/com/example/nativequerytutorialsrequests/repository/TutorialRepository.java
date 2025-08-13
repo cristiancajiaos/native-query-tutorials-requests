@@ -35,7 +35,7 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
   List<Tutorial> getTutorialsByLevelBetween(@Param("start") int start, @Param("end") int end);
 
   @Query(value = "select * FROM tutorials t WHERE t.created_at >= :date", nativeQuery = true)
-  List<Tutorial> getTutorialsByDateGreaterEqualThan(@Param("date") Date date);
+  List<Tutorial> getTutorialsCreatedByDateGreaterEqualThan(@Param("date") Date date);
 
   // Between incluye ambas fechas límite
   @Query(value = "select * FROM tutorials t WHERE t.created_at BETWEEN :startDate AND :endDate", nativeQuery = true)

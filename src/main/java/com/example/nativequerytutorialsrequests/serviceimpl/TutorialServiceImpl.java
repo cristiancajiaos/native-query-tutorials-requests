@@ -43,7 +43,7 @@ public class TutorialServiceImpl implements TutorialService {
   }
 
   @Override
-  public List<TutorialDTO> getTutorialesCaseInsensitiveBeTitleLike(String title) {
+  public List<TutorialDTO> getTutorialesCaseInsensitiveByTitleLike(String title) {
     return tutorialRepository.getTutorialsCaseInsensitiveByTitleLike(title).stream().map(this::convertToDTO).collect(
         Collectors.toList());
   }
@@ -68,7 +68,7 @@ public class TutorialServiceImpl implements TutorialService {
 
   @Override
   public List<TutorialDTO> getTutorialsCreatedByDateGreaterEqualThan(Date date) {
-    return tutorialRepository.getTutorialsByDateGreaterEqualThan(date).stream().map(this::convertToDTO).collect(
+    return tutorialRepository.getTutorialsCreatedByDateGreaterEqualThan(date).stream().map(this::convertToDTO).collect(
         Collectors.toList());
   }
 
