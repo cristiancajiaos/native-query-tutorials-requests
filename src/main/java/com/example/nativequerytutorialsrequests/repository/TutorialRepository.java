@@ -4,17 +4,30 @@ import com.example.nativequerytutorialsrequests.entity.Tutorial;
 import java.util.Date;
 import java.util.List;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface TutorialRepository extends JpaRepository<Tutorial, Long>, PagingAndSortingRepository<Tutorial, Long> {
 
+  /* Actualizaciones */
+
+  @Transactional
+  @Modifying
+  @Query(value = "UPDATE tutorials SET published=true WHERE id = :id", nativeQuery = true)
+  int publishTutorial(@Param("id") Long id);
+
+  /* Consultas */
+
   @Query(value = "SELECT * FROM tutorials t", nativeQuery = true)
   List<Tutorial> getAllTutorials();
+
+  @Query(value = "SELECT * FROM tutorials t ORDER BY t.id ASC", nativeQuery = true)
+  List<Tutorial> getAllTutorialsOrderById();
 
   @Query(value = "SELECT * FROM tutorials t WHERE t.published = ?1", nativeQuery = true)
   List<Tutorial> getTutorialsByPublished(Boolean published);

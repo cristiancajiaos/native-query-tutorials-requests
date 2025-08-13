@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,9 +32,25 @@ public class TutorialController {
     this.tutorialService = tutorialService;
   }
 
+  /* Actualizaciones */
+
+  @PutMapping("/publish-tutorial/{id}")
+  public ResponseEntity<TutorialDTO> publishTutorial(@PathVariable Long id) {
+    TutorialDTO tutorial = tutorialService.publishTutorial(id);
+    return ResponseEntity.ok(tutorial);
+  }
+
+  /* Consultas */
+
   @GetMapping
   public ResponseEntity<List<TutorialDTO>> getAllTutorials() {
     List<TutorialDTO> tutorials = tutorialService.getAllTutorials();
+    return ResponseEntity.ok(tutorials);
+  }
+
+  @GetMapping("/id/order")
+  public ResponseEntity<List<TutorialDTO>> getAllTutorialsOrderById() {
+    List<TutorialDTO> tutorials = tutorialService.getAllTutorialsOrderById();
     return ResponseEntity.ok(tutorials);
   }
 

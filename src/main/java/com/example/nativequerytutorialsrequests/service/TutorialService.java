@@ -9,7 +9,15 @@ import org.springframework.data.repository.query.Param;
 
 public interface TutorialService {
 
+  /* Actualizaciones */
+
+  TutorialDTO publishTutorial(Long id);
+
+  /* Consultas */
+
   List<TutorialDTO> getAllTutorials();
+
+  List<TutorialDTO> getAllTutorialsOrderById();
 
   Page<TutorialDTO> getAllTutorials(Pageable pageable);
 

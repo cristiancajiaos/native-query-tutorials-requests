@@ -7,6 +7,7 @@ import com.example.nativequerytutorialsrequests.service.TutorialService;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,9 +23,27 @@ public class TutorialServiceImpl implements TutorialService {
     this.tutorialRepository = tutorialRepository;
   }
 
+  /* Actuaciones */
+
+  @Override
+  public TutorialDTO publishTutorial(Long id) {
+    int foo = tutorialRepository.publishTutorial(id);
+    System.out.println(foo);
+    Tutorial updatedTutorial = tutorialRepository.findById(id).orElseThrow();
+    return convertToDTO(updatedTutorial);
+  }
+
+  /* Consultas */
+
   @Override
   public List<TutorialDTO> getAllTutorials() {
     return tutorialRepository.getAllTutorials().stream().map(this::convertToDTO).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<TutorialDTO> getAllTutorialsOrderById() {
+    return tutorialRepository.getAllTutorialsOrderById().stream().map(this::convertToDTO).collect(
+        Collectors.toList());
   }
 
   @Override
