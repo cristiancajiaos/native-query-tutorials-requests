@@ -3,6 +3,7 @@ package com.example.nativequerytutorialsrequests.repository;
 import com.example.nativequerytutorialsrequests.entity.Tutorial;
 import java.util.Date;
 import java.util.List;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,6 +21,9 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Long>, Pagin
 
   @Query(value = "select * FROM tutorials t WHERE t.published = :isPublished", nativeQuery = true)
   List<Tutorial> getTutorialsByPublishedAlt(@Param("isPublished") Boolean isPublished);
+
+  @Query(value = "select * FROM tutorials t WHERE t.published = :isPublished", nativeQuery = true)
+  Page<Tutorial> getTutorialesByPublishedPaged(@Param("isPublished") Boolean isPublished, Pageable pageable);
 
   @Query(value = "select * FROM tutorials t WHERE t.title LIKE %?1%", nativeQuery = true)
   List<Tutorial> getTutorialsByTitleLike(String title);

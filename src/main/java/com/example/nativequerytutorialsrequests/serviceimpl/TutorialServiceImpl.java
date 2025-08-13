@@ -46,6 +46,11 @@ public class TutorialServiceImpl implements TutorialService {
   }
 
   @Override
+  public Page<TutorialDTO> getTutorialsByPublishedPaged(Boolean isPublished, Pageable pageable) {
+    return tutorialRepository.getTutorialesByPublishedPaged(isPublished, pageable).map(this::convertToDTO);
+  }
+
+  @Override
   public List<TutorialDTO> getTutorialsByTitleLike(String title) {
     return tutorialRepository.getTutorialsByTitleLike(title).stream().map(this::convertToDTO).collect(
         Collectors.toList());

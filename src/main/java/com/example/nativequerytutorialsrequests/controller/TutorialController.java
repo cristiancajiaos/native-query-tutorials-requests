@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,6 +56,19 @@ public class TutorialController {
   @GetMapping("/published-alt/{isPublished}")
   public ResponseEntity<List<TutorialDTO>> getTutorialsByPublishedAlt(@PathVariable Boolean isPublished) {
     List<TutorialDTO> tutorials = tutorialService.getTutorialsByPublishedAlt(isPublished);
+    return ResponseEntity.ok(tutorials);
+  }
+
+  @GetMapping("/published-paged/{isPublished}")
+  public ResponseEntity<Page<TutorialDTO>> getTutorialsByPublishedPaged(
+      @PathVariable Boolean isPublished,
+      @RequestParam(defaultValue = "0") int page,
+      @RequestParam(defaultValue = "10") int size,
+      @RequestParam(defaultValue = "published") String sortBy,
+      @RequestParam(defaultValue = "true") boolean ascending) {
+    Sort sort = ascending ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+    Pageable pageable = PageRequest.of(page, size, sort);
+    Page<TutorialDTO> tutorials = tutorialService.getTutorialsByPublishedPaged(isPublished, pageable);
     return ResponseEntity.ok(tutorials);
   }
 

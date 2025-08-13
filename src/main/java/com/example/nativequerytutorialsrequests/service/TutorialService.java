@@ -17,6 +17,8 @@ public interface TutorialService {
 
   List<TutorialDTO> getTutorialsByPublishedAlt(Boolean isPublished);
 
+  Page<TutorialDTO> getTutorialsByPublishedPaged(Boolean isPublished, Pageable pageable);
+
   List<TutorialDTO> getTutorialsByTitleLike(String title);
 
   List<TutorialDTO> getTutorialesCaseInsensitiveByTitleLike(String title);
