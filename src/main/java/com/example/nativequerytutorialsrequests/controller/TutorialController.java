@@ -68,6 +68,12 @@ public class TutorialController {
     return ResponseEntity.ok(tutorials);
   }
 
+  @GetMapping("/level/between/{start}/{end}")
+  public ResponseEntity<List<TutorialDTO>> getTutorialsByLevelBetween(@PathVariable int start, @PathVariable int end) {
+    List<TutorialDTO> tutorials = tutorialService.getTutorialsByLevelBetween(start, end);
+    return ResponseEntity.ok(tutorials);
+  }
+
   @GetMapping("/created-at/greater-equal-than/{date}")
   public ResponseEntity<List<TutorialDTO>> getTutorialesByDateGreaterEqualThan(@PathVariable("date") String dateStr) {
     Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr, new ParsePosition(0));

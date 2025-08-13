@@ -30,6 +30,9 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
   @Query(value = "select * FROM tutorials t WHERE t.level <= :level", nativeQuery = true)
   List<Tutorial> getTutorialsByLevelLowerOrEqualThan(@Param("level") int level);
 
+  @Query(value = "select * FROM tutorials t WHERE t.level BETWEEN :start and :end", nativeQuery = true)
+  List<Tutorial> getTutorialsByLevelBetween(@Param("start") int start, @Param("end") int end);
+
   @Query(value = "select * FROM tutorials t WHERE t.created_at >= :date", nativeQuery = true)
   List<Tutorial> getTutorialsByDateGreaterEqualThan(@Param("date") Date date);
 
