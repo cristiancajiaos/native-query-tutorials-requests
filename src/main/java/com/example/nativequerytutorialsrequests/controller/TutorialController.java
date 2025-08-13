@@ -7,11 +7,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -30,6 +34,16 @@ public class TutorialController {
   public ResponseEntity<List<TutorialDTO>> getAllTutorials() {
     List<TutorialDTO> tutorials = tutorialService.getAllTutorials();
     return ResponseEntity.ok(tutorials);
+  }
+
+  @GetMapping("/paging")
+  public ResponseEntity<Page<TutorialDTO>> getAllTutorials(
+      @RequestParam(defaultValue = "0") int page,
+      @RequestParam(defaultValue = "10") int size
+  ) {
+    Pageable pageable = PageRequest.of(page, size);
+    Page<TutorialDTO> pagedTutorials = tutorialService.getAllTutorials(pageable);
+    return ResponseEntity.ok(pagedTutorials);
   }
 
   @GetMapping("/published/{published}")

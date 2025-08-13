@@ -3,11 +3,15 @@ package com.example.nativequerytutorialsrequests.service;
 import com.example.nativequerytutorialsrequests.record.TutorialDTO;
 import java.util.Date;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 public interface TutorialService {
 
   List<TutorialDTO> getAllTutorials();
+
+  Page<TutorialDTO> getAllTutorials(Pageable pageable);
 
   List<TutorialDTO> getTutorialsByPublished(Boolean published);
 

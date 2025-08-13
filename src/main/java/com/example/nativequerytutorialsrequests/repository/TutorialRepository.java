@@ -3,12 +3,14 @@ package com.example.nativequerytutorialsrequests.repository;
 import com.example.nativequerytutorialsrequests.entity.Tutorial;
 import java.util.Date;
 import java.util.List;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
+public interface TutorialRepository extends JpaRepository<Tutorial, Long>, PagingAndSortingRepository<Tutorial, Long> {
 
   @Query(value = "SELECT * FROM tutorials t", nativeQuery = true)
   List<Tutorial> getAllTutorials();

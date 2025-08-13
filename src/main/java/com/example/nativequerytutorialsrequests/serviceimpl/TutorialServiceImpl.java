@@ -4,9 +4,12 @@ import com.example.nativequerytutorialsrequests.entity.Tutorial;
 import com.example.nativequerytutorialsrequests.record.TutorialDTO;
 import com.example.nativequerytutorialsrequests.repository.TutorialRepository;
 import com.example.nativequerytutorialsrequests.service.TutorialService;
+
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +26,12 @@ public class TutorialServiceImpl implements TutorialService {
   public List<TutorialDTO> getAllTutorials() {
     return tutorialRepository.getAllTutorials().stream().map(this::convertToDTO).collect(Collectors.toList());
   }
+
+  @Override
+  public Page<TutorialDTO> getAllTutorials(Pageable pageable) {
+    return tutorialRepository.findAll(pageable).map(this::convertToDTO);
+  }
+
 
   @Override
   public List<TutorialDTO> getTutorialsByPublished(Boolean published) {
