@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
@@ -46,6 +47,12 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
   // Between incluye ambas fechas límite
   @Query(value = "select * FROM tutorials t WHERE t.created_at BETWEEN :startDate AND :endDate", nativeQuery = true)
   List<Tutorial> getTutorialsCreatedByDateBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+  @Query(value = "select * FROM tutorials t ORDER BY t.created_at ASC", nativeQuery = true)
+  List<Tutorial> getTutorialsCreatedByDateAsc();
+
+  @Query(value = "select * FROM tutorials t ORDER BY t.created_at DESC", nativeQuery = true)
+  List<Tutorial> getTutorialsCreatedByDateDesc();
 
   @Query(value = "select * FROM tutorials t WHERE t.published = :isPublished AND t.title LIKE CONCAT('%', :title, '%')", nativeQuery = true)
   List<Tutorial> getTutorialsByPublishedAndTitle(@Param("isPublished") Boolean isPublished, @Param("title") String title);

@@ -108,6 +108,24 @@ public class TutorialController {
     return ResponseEntity.ok(tutorials);
   }
 
+  @GetMapping("/created-at/order/{order}")
+  public ResponseEntity<List<TutorialDTO>> getTutorialesCreatedByDateOrder(@PathVariable("order") String order) {
+    List<TutorialDTO> tutorials = new ArrayList<>();
+    try {
+      if (order.equals("asc")) {
+        tutorials = tutorialService.getTutorialsCreatedByDateAsc();
+      } else if (order.equals("desc")) {
+        tutorials = tutorialService.getTutorialsCreatedByDateDesc();
+      } else {
+        throw new Error("Invalid order parameter");
+      }
+      return ResponseEntity.ok(tutorials);
+    } catch (Exception ex) {
+      System.err.println("Error: " + ex);
+      return ResponseEntity.badRequest().build();
+    }
+  }
+
   @GetMapping("/mixed/{isPublished}/{title}")
   public ResponseEntity<List<TutorialDTO>> getTutorialsByPublishedAndTitle(
       @PathVariable("isPublished") Boolean isPublished, @PathVariable String title) {

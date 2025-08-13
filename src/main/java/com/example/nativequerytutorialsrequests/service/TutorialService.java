@@ -31,6 +31,10 @@ public interface TutorialService {
 
   List<TutorialDTO> getTutorialsCreatedByDateBetween(Date start, Date end);
 
+  List<TutorialDTO> getTutorialsCreatedByDateAsc();
+
+  List<TutorialDTO> getTutorialsCreatedByDateDesc();
+
   List<TutorialDTO> getTutorialesByPublishedAndTitle(Boolean isPublished, String title);
 
 }
